@@ -15,6 +15,7 @@ async def function_with_integer_data_type(data_type : int) :
     return {"item_id" : data_type}
 
 # Fixed Vs Modify
+# Order is Matter
 
 @app.get("/user/me")
 async def function_with_url():
@@ -30,6 +31,7 @@ class ModelName(str, Enum):
     ml = "machine_learning"
     dl = "deep_learning"
     ds = "data_science"
+    tm = "transformer_model"
 
 @app.get("/python/{name}")
 async def get_with_enum(name : ModelName):        #input name only in ModelName otherwise error (path parameter : function parameter)
@@ -41,6 +43,12 @@ async def get_with_enum(name : ModelName):        #input name only in ModelName 
 
     elif name == ModelName.dl:
         return {"mode name " : name, "Full Name " : ModelName.dl}
+
+    elif name is ModelName.tm:
+        return {
+            "Model Name" : name,
+            "Full Name" : ModelName.tm
+        }
 
     return {"mode name " : name, "Full Name " : ModelName.ds}
 
