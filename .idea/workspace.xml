@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6b7609c4-8268-4b11-97c9-0a115e7c0118" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/PathParameter.py" afterPath="$PROJECT_DIR$/source/PathParameter.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/Query_Parameters_and_String_Validations.py" afterPath="$PROJECT_DIR$/source/Query_Parameters_and_String_Validations.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/Test.py" afterPath="$PROJECT_DIR$/source/Test.py" />
     </list>
     <ignored path="Fast-Api.iws" />
