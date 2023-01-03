@@ -27,7 +27,7 @@ async def read2(query:str, item_name: str = Path(default=Required, max_length=20
 
     return result
 
-# Not work because Path function use End of the function argument
+# # Not work because Path function use End of the function argument
 # @app.get("/itemsss/{item_id}")
 # async def read_items(item_id: int = Path(..., title="The ID of the item to get"), q:str):
 #     results = {"item_id": item_id}
