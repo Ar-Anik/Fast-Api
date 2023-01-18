@@ -1,45 +1,30 @@
+import uvicorn
 from fastapi import FastAPI
-from fastapi.encoders import jsonable_encoder
-from pydantic import BaseModel
-from typing import List
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(debug=True)
 
+origins = [
+    "http://localhost.tinanglo.com",
+    "https://localhost.tinanglo.com",
+    "http://localhost",
+    "http://localhost:8080",
+]
 
-class Item(BaseModel):
-    name: str = None
-    description: str = None
-    price: float = None
-    tax: float = 10.5
-    tags: List[str] = []
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
+@app.get("/")
+async def main():
+    return {
+        "name": "Cors.py",
+        "By": "Middleware",
+    }
 
-items = {
-    "foo": {"name": "Foo", "price": 50.2},
-    "bar": {"name": "Bar", "description": "The bartenders", "price": 62, "tax": 20.2},
-    "baz": {"name": "Baz", "description": None, "price": 50.2, "tax": 10.5, "tags": []},
-}
-
-
-@app.get("/items/{item_id}", response_model=Item)
-async def read_item(item_id: str):
-    return items[item_id]
-
-
-@app.patch("/items/{item_id}", response_model=Item)
-async def update_item(item_id: str, item: Item):
-    stored_item_data = items[item_id]
-
-    stored_item_model = Item(**stored_item_data)
-
-    update_data = item.dict(exclude_unset=True)
-
-    print(update_data, "\n")
-
-    updated_item = stored_item_model.copy(update=update_data)
-
-    items[item_id] = jsonable_encoder(updated_item)
-
-    print(items[item_id])
-
-    return updated_item
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=int(os.getenv("9000")))
